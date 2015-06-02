@@ -1,1 +1,5 @@
-This is a test of crappy-lang
+set x gets (2, 4, 5)
+set y gets (4, 5, 6)
+all x y
+same x y
+diff x y
