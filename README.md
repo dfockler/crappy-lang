@@ -3,7 +3,7 @@
 Welcome to the Crappy Programming Language
 ##Current Features
 * Enter a file as input
-* Read the file's contents as output 
+* Read the file's contents as output tokens split on spaces 
 * Accepts any file type
 * Written in Rust!
 * It's the steaming hot new language

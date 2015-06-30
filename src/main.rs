@@ -1,7 +1,7 @@
 use std::env;
 use std::fs::File;
 use std::io::Read;
-mod parser;
+mod interpreter;
 
 fn main() {
     let filename = env::args().nth(1).expect("You need an input file");
@@ -15,6 +15,6 @@ fn main() {
     let lines: Vec<&str> = contents.split("\n").collect();
 
     for line in lines {
-        parser::parse_line(line);
+        interpreter::interpret_line(line);
     }
 }
