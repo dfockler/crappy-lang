@@ -15,6 +15,6 @@ fn main() {
     let lines: Vec<&str> = contents.split("\n").collect();
 
     for line in lines {
-        interpreter::interpret_line(line);
+        interpreter::interpret(line);
     }
 }
