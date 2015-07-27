@@ -1,5 +1,11 @@
-set x (0, -4, 50)
-set y (4, 5, 6)
-all x y set x
-same x y
-diff x y
+set y (2, 3, 4, 20)
+scale y 2 set x
+out x
+diff x y set y
+out y
+set z (3, 20, 6, 8, 19)
+out z
+same z y set z
+out z
+join z y set y
+out y

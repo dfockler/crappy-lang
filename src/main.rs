@@ -20,6 +20,4 @@ fn main() {
     for line in lines {
         interpreter.interpret(line);
     }
-
-    interpreter.memory();
 }
