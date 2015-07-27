@@ -1,23 +1,40 @@
-pub fn interpret(line: &str) {
-  tokenize(line);
-  // Execute
-  // Output Execution Results
+#![feature(collections)]
+use std::collections::HashMap;
+
+pub struct Interpreter<'a> {
+  memory_map: HashMap<&'a str, Vec<i32>>
 }
 
-fn tokenize(line: &str) {
-  let tokens = line.split(" ").collect::<Vec<&str>>();
+impl<'a> Interpreter<'a> {
 
-  if tokens[0] == "set" {
-    set(tokens[1], parse_set_values(line));
+  pub fn new() -> Interpreter<'a> {
+    Interpreter { memory_map: HashMap::new() }
   }
-}
 
-fn set(variable: &str, values: Vec<i32>) {
-  print!("{0} -> ", variable);
-  for value in values {
-    print!("{:?}, ", value)
+  pub fn interpret(&mut self, line: &'a str) {
+    let tokens = line.split(" ").collect::<Vec<&str>>();
+
+    match tokens[0] {
+      "set" => {
+        let set_values = parse_set_values(line);
+        let name = tokens[1];
+        self.memory_map.insert(name, set_values);
+      },
+      _ => {
+        println!("Unknown Definition");
+      }
+    }
   }
-  println!("");
+
+  pub fn memory(&mut self) {
+    for (name, values) in &self.memory_map {
+      print!("{}:", name);
+      for value in values {
+        print!("{}, ", value);
+      }
+      println!("");
+    }
+  }
 }
 
 fn parse_set_values(line: &str) -> Vec<i32> {

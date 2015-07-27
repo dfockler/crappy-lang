@@ -1,6 +1,7 @@
 use std::env;
 use std::fs::File;
 use std::io::Read;
+use std::collections::HashMap;
 mod interpreter;
 
 fn main() {
@@ -14,7 +15,11 @@ fn main() {
     
     let lines: Vec<&str> = contents.split("\n").collect();
 
+    let mut interpreter = interpreter::Interpreter::new();
+
     for line in lines {
-        interpreter::interpret(line);
+        interpreter.interpret(line);
     }
+
+    interpreter.memory();
 }
