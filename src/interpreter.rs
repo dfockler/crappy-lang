@@ -1,4 +1,3 @@
-#![feature(collections)]
 use std::collections::HashMap;
 
 pub struct Interpreter<'a> {
