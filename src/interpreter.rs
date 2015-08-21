@@ -1,23 +1,22 @@
 use std::collections::HashMap;
 
-pub struct Interpreter<'a> {
-  memory_map: HashMap<&'a str, Vec<i32>>
+pub struct Interpreter {
+  memory_map: HashMap<String, Vec<i32>>
 }
 
-impl<'a> Interpreter<'a> {
+impl Interpreter {
 
-  pub fn new() -> Interpreter<'a> {
+  pub fn new() -> Interpreter {
     Interpreter { memory_map: HashMap::new() }
   }
 
-  pub fn interpret(&mut self, line: &'a str) {
-    let tokens = line.split(" ").collect::<Vec<&str>>();
-
+  pub fn interpret(&mut self, line: &String) {
+    let tokens: Vec<&str> = line.split(" ").collect();
     match tokens[0] {
       "set" => {
         let set_values = parse_set_values(line);
         let name = tokens[1];
-        self.memory_map.insert(name, set_values);
+        self.memory_map.insert(name.to_string(), set_values);
       },
       "join" => {
         let first = tokens[1];
@@ -30,7 +29,7 @@ impl<'a> Interpreter<'a> {
         }
 
         if tokens.len() == 5 {
-          self.memory_map.insert(tokens[4], first_values);
+          self.memory_map.insert(tokens[4].to_string(), first_values);
         }
       },
       "same" => {
@@ -53,7 +52,7 @@ impl<'a> Interpreter<'a> {
         }
 
         if tokens.len() == 5 {
-          self.memory_map.insert(tokens[4], new_values);
+          self.memory_map.insert(tokens[4].to_string(), new_values);
         } 
       },
       "diff" => {
@@ -76,7 +75,7 @@ impl<'a> Interpreter<'a> {
         }
 
         if tokens.len() == 5 {
-          self.memory_map.insert(tokens[4], new_values);
+          self.memory_map.insert(tokens[4].to_string(), new_values);
         } 
       },
       "scale" => {
@@ -90,7 +89,7 @@ impl<'a> Interpreter<'a> {
         }
 
         if tokens.len() == 5 {
-          self.memory_map.insert(tokens[4], new_values);
+          self.memory_map.insert(tokens[4].to_string(), new_values);
         }
       },
       "out" => {
@@ -125,7 +124,7 @@ impl<'a> Interpreter<'a> {
   }
 }
 
-fn parse_set_values(line: &str) -> Vec<i32> {
+fn parse_set_values(line: &String) -> Vec<i32> {
   let start = '(';
   let end = ')';
 

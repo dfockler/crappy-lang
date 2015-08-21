@@ -2,8 +2,8 @@
 ##The Crappy Programming Language
 Welcome to the Crappy Programming Language
 ##Current Features
-* Enter a file as input
-* Has 5 methods
+* Enter a file as input or leave blank for a simple REPL
+* Has 6 methods
   * set set1 (set value, set value, ...)
   * join set1 set2 [set set3] -- returns a set containing all elements of both sets
   * same set1 set2 [set set3] -- returns a set containing the elements present in both sets
